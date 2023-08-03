@@ -1,6 +1,7 @@
 package br.edu.cesarschool.next.oo.entidade;
 
 import java.io.Serializable;
+
 public class ContaCorrente implements Serializable {
 
     private String numero;
@@ -42,5 +43,10 @@ public class ContaCorrente implements Serializable {
 
     public void debitar(double valor) {
         saldo -= valor;
+    }
+
+    @Override
+    public String toString() {
+        return "Número: " + numero + ", Saldo: " + saldo + ", Nome Correntista: " + nomeCorrentista;
     }
 }
