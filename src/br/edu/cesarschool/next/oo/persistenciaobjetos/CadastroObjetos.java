@@ -18,7 +18,10 @@ public class CadastroObjetos {
    public CadastroObjetos() {
    }
 
-   public void incluir(Serializable objeto, String chave) {
+   public CadastroObjetos(Class tipo) {
+   }
+
+public void incluir(Serializable objeto, String chave) {
       FileOutputStream fos = null;
       ObjectOutputStream oos = null;
 

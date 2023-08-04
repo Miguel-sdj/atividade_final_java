@@ -1,5 +1,7 @@
 package br.edu.cesarschool.next.oo.entidade;
 
-public abstract class RegistroIdentificavel {
+import java.io.Serializable;
+
+public abstract class RegistroIdentificavel implements Serializable{
     public abstract String obterChave();
 }

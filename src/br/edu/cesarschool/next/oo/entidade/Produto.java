@@ -1,8 +1,6 @@
 package br.edu.cesarschool.next.oo.entidade;
 
-import java.io.Serializable;
-
-public class Produto implements Serializable {
+public class Produto extends RegistroIdentificavel {
 	private static final long serialVersionUID = 1L;
 	private String codigo;
 	private String nome;
@@ -33,5 +31,9 @@ public class Produto implements Serializable {
 	@Override
 	public String toString() {
 		return nome + " , " + codigo + " , " + preco;
+	}
+	@Override
+	public String obterChave() {
+		return codigo;
 	}
 }
