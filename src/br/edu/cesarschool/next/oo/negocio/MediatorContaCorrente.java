@@ -18,13 +18,15 @@ public class MediatorContaCorrente {
 
     public String incluir(ContaCorrente conta) {
         if (conta == null) {
-            return "Conta corrente não informada";
-        } else if (stringNulaOuVazia(conta.getNumero())) {
-            return "Número da conta corrente não informado";
-        } else if (conta.getSaldo() < 0) {
-            return "Saldo inválido";
-        } else if (stringNulaOuVazia(conta.getNomeCorrentista())) {
-            return "Nome do correntista não informado";
+			return "Conta não informada"; 
+		} else if (stringNulaOuVazia(conta.getNumero())) {
+			return "Número não informado";
+		} else if (stringNulaOuVazia(conta.getNomeCorrentista())) {
+			return "Nome correntista não informado"; 
+		} else if (conta.getNumero().length() < 5 || conta.getNumero().length() > 8) {
+			return "Tamanho do número inválido";
+		} else if (conta.getNomeCorrentista().length() > 60) {
+			return "Tamanho do nome do correntista inválido";		
         } else if (conta instanceof ContaPoupanca) {
             ContaPoupanca contaPoupanca = (ContaPoupanca) conta;
             if (contaPoupanca.getPercentualBonus() < 0) {
@@ -50,7 +52,6 @@ public class MediatorContaCorrente {
         } else if (stringNulaOuVazia(numero)) {
             return "Número da conta corrente não informado";
         }
-
         ContaCorrente conta = daoContaCorrente.buscar(numero);
         if (conta == null) {
             return "Conta corrente não encontrada";
