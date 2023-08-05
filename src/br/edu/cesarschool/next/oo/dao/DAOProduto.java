@@ -18,6 +18,10 @@ public class DAOProduto {
 		return (Produto)daoGen.buscar(codigo);
 	}
 
+	public boolean excluir(String codigo) {
+		return daoGen.excluir(codigo);
+	}
+
 	public Produto[] buscarTodos() {
 		RegistroIdentificavel[] rets = daoGen.buscarTodos();
 		Produto[] prods = new Produto[rets.length];

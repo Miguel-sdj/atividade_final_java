@@ -4,6 +4,8 @@ import br.edu.cesarschool.next.oo.entidade.ContaCorrente;
 import br.edu.cesarschool.next.oo.entidade.ContaPoupanca;
 import br.edu.cesarschool.next.oo.negocio.MediatorContaCorrente;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,7 +23,9 @@ public class TelaContaCorrente {
             System.out.println("3- Debitar valor");
             System.out.println("4- Buscar conta corrente");
             System.out.println("5- Gerar relatório geral de contas correntes");
-            System.out.println("6- Sair");
+            System.out.println("6- Ver tempo de criação da conta corrente");
+            System.out.println("7- Excluir conta corrente");
+            System.out.println("8- Sair");
             opcao = ENTRADA.nextInt();
 
             switch (opcao) {
@@ -41,6 +45,12 @@ public class TelaContaCorrente {
                     gerarRelatorioGeral();
                     break;
                 case 6:
+                    verTempoDeCriacao();
+                    break;
+                case 7:
+                    excluir();
+                    break;
+                case 8:
                     System.out.println("Encerrando...");
                     break;
                 default:
@@ -48,7 +58,19 @@ public class TelaContaCorrente {
                     break;
             }
 
-        } while (opcao != 6);
+        } while (opcao != 8);
+    }
+    private void verTempoDeCriacao() {
+        System.out.println("Digite o número da conta corrente: ");
+        String numero = ENTRADA.next();
+        ContaCorrente conta = mediatorContaCorrente.buscar(numero);
+        // System.out.println(conta); // debug
+        if (conta == null) {
+            System.out.println("Conta corrente não encontrada!");
+        } else {
+            int quantidadeDias = conta.obterTempoDeCriacao();
+            System.out.println("Tempo de criação da conta: " + quantidadeDias + " dias.");
+        }
     }
 
     private void incluir() {
@@ -78,6 +100,22 @@ public class TelaContaCorrente {
             String mensagem = mediatorContaCorrente.incluir(contaCorrente);
             if (mensagem == null) {
                 System.out.println("Sucesso na inclusão da conta corrente!");
+            } else {
+                System.out.println(mensagem);
+            }
+        }
+    }
+
+    private void excluir(){
+        System.out.println("Digite o numero da conta que deseja excluir");
+        String numero = ENTRADA.next();
+        ContaCorrente conta = mediatorContaCorrente.buscar(numero);
+        if (conta == null) {
+            System.out.println("Conta corrente não encontrada!");
+        } else {
+            String mensagem = mediatorContaCorrente.excluir(numero);
+            if (mensagem == null) {
+                System.out.println("Sucesso na exclusão da conta corrente!");
             } else {
                 System.out.println(mensagem);
             }

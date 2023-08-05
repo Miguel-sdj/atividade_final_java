@@ -37,6 +37,16 @@ public class DAOGenerico {
             return true;
         }
     }
+    
+    public boolean excluir(String codigo) {
+        RegistroIdentificavel regbuscado = buscar(codigo);
+        if (regbuscado == null) {
+            return false;
+        } else {
+            cadastro.excluir(tipo, codigo);
+            return true;
+        }
+    }
 
     public RegistroIdentificavel[] buscarTodos() {
         Serializable[] rets = cadastro.buscarTodos(tipo);

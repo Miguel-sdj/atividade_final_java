@@ -3,7 +3,9 @@ package br.edu.cesarschool.next.oo.negocio;
 import br.edu.cesarschool.next.oo.dao.DAOContaCorrente;
 import br.edu.cesarschool.next.oo.entidade.ContaCorrente;
 import br.edu.cesarschool.next.oo.entidade.ContaPoupanca;
+import br.edu.cesarschool.next.oo.entidade.Produto;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,6 +31,9 @@ public class MediatorContaCorrente {
                 return "Percentual de bônus inválido";
             }
         }
+        conta.setDataHoraCriacao(LocalDateTime.now());
+        LocalDateTime dataHora = LocalDateTime.of(2023, 8, 2, 10, 30, 0);
+        // conta.setDataHoraCriacao(dataHora);
         boolean ret = daoContaCorrente.incluir(conta);
         if (!ret) {
             return "Conta corrente já existente";
@@ -81,6 +86,19 @@ public class MediatorContaCorrente {
             return null;
         } else {
             return daoContaCorrente.buscar(numero);
+        }
+    }
+
+    public String excluir(String numero) {
+        ContaCorrente contaCorrente = daoContaCorrente.buscar(numero);
+        if (contaCorrente != null) {
+            if (daoContaCorrente.excluir(numero)) {
+                return "Conta corrente excluída com sucesso!";
+            } else {
+                return "Não foi possível excluir a conta corrente.";
+            }
+        } else {
+            return "Conta corrente não encontrada.";
         }
     }
 

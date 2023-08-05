@@ -5,19 +5,19 @@ import br.edu.cesarschool.next.oo.entidade.RegistroIdentificavel;
 
 public class DAOContaCorrente {
     private DAOGenerico daoGen = new DAOGenerico(ContaCorrente.class);
-
+    
     public boolean incluir(ContaCorrente conta) {
         return daoGen.incluir(conta);
     }
-
+    
+    public boolean excluir(String codigo) {
+        return daoGen.excluir(codigo);
+    }
     public ContaCorrente buscar(String codigo) {
         return (ContaCorrente) daoGen.buscar(codigo);
     }
 
-    public boolean alterar(ContaCorrente conta) {
-        return daoGen.alterar(conta);
-    }
-
+    
     public ContaCorrente[] buscarTodos() {
         RegistroIdentificavel[] rets = daoGen.buscarTodos();
         ContaCorrente[] contas = new ContaCorrente[rets.length];
@@ -27,4 +27,8 @@ public class DAOContaCorrente {
         return contas;
     }
 
+    public boolean alterar(ContaCorrente conta) {
+        return daoGen.alterar(conta);
+    }
+    
 }
