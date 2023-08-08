@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public abstract class RegistroIdentificavel implements Serializable {
+    private static final long serialVersionUID = 1L;
     private LocalDateTime dataHoraCriacao;
 
     // public RegistroIdentificavel() {

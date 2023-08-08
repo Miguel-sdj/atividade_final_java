@@ -3,7 +3,6 @@ package br.edu.cesarschool.next.oo.entidade;
 import java.io.Serializable;
 
 public class ContaCorrente extends RegistroIdentificavel{
-    
     private static final long serialVersionUID = 1L;
     private String numero;
     private double saldo;
@@ -25,6 +24,7 @@ public class ContaCorrente extends RegistroIdentificavel{
     public double getSaldo() {
         return saldo;
     }
+
 
     public String getNomeCorrentista() {
         return nomeCorrentista;
@@ -48,11 +48,15 @@ public class ContaCorrente extends RegistroIdentificavel{
 
     @Override
     public String toString() {
-        return "Número: " + numero + ", Saldo: " + saldo + ", Nome Correntista: " + nomeCorrentista;
+        return "Número: " + numero + ", Saldo: " + saldo + ", Nome Correntista: " + nomeCorrentista + "dias que criei: " + obterTempoDeCriacao();
     }
 
     @Override
     public String obterChave() {
         return numero;
     }
+
+    // public double obterAliquotaCpmf() {
+    //     return 0.30;
+    // }
 }

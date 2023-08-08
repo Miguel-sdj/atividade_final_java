@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TelaContaCorrente {
-
+    
     private static final Scanner ENTRADA = new Scanner(System.in);
     private MediatorContaCorrente mediatorContaCorrente = new MediatorContaCorrente();
 
@@ -25,7 +25,8 @@ public class TelaContaCorrente {
             System.out.println("5- Gerar relatório geral de contas correntes");
             System.out.println("6- Ver tempo de criação da conta corrente");
             System.out.println("7- Excluir conta corrente");
-            System.out.println("8- Sair");
+            System.out.println("8- Excluir contas com saldo zerado");
+            System.out.println("9- Sair");
             opcao = ENTRADA.nextInt();
 
             switch (opcao) {
@@ -51,6 +52,9 @@ public class TelaContaCorrente {
                     excluir();
                     break;
                 case 8:
+                    excluirContasZeradas();
+                    break;
+                case 9:
                     System.out.println("Encerrando...");
                     break;
                 default:
@@ -58,8 +62,11 @@ public class TelaContaCorrente {
                     break;
             }
 
-        } while (opcao != 8);
+        } while (opcao != 9);
     }
+    
+    
+
     private void verTempoDeCriacao() {
         System.out.println("Digite o número da conta corrente: ");
         String numero = ENTRADA.next();
@@ -170,6 +177,15 @@ public class TelaContaCorrente {
         System.out.println("Relatório Geral de Contas Correntes:");
         for (ContaCorrente conta : contas) {
             System.out.println(conta);
+        }
+    }
+
+    private void excluirContasZeradas() {
+        String mensagem = mediatorContaCorrente.excluirContasZeradas();
+        if (mensagem == null){
+            System.out.println("Não possui contas zeradas.");
+        } else{
+            System.out.println(mensagem);
         }
     }
 

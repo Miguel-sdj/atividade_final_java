@@ -9,6 +9,10 @@ public class DAOContaCorrente {
     public boolean incluir(ContaCorrente conta) {
         return daoGen.incluir(conta);
     }
+
+    public boolean alterar(ContaCorrente conta) {
+        return daoGen.alterar(conta);
+    }
     
     public boolean excluir(String codigo) {
         return daoGen.excluir(codigo);
@@ -16,7 +20,6 @@ public class DAOContaCorrente {
     public ContaCorrente buscar(String codigo) {
         return (ContaCorrente) daoGen.buscar(codigo);
     }
-
     
     public ContaCorrente[] buscarTodos() {
         RegistroIdentificavel[] rets = daoGen.buscarTodos();
@@ -27,8 +30,6 @@ public class DAOContaCorrente {
         return contas;
     }
 
-    public boolean alterar(ContaCorrente conta) {
-        return daoGen.alterar(conta);
-    }
+    
     
 }

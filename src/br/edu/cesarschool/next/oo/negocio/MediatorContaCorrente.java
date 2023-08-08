@@ -3,7 +3,6 @@ package br.edu.cesarschool.next.oo.negocio;
 import br.edu.cesarschool.next.oo.dao.DAOContaCorrente;
 import br.edu.cesarschool.next.oo.entidade.ContaCorrente;
 import br.edu.cesarschool.next.oo.entidade.ContaPoupanca;
-import br.edu.cesarschool.next.oo.entidade.Produto;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -14,8 +13,9 @@ public class MediatorContaCorrente {
     private DAOContaCorrente daoContaCorrente = new DAOContaCorrente();
 
     public MediatorContaCorrente() {
-    }
 
+    }
+    
     public String incluir(ContaCorrente conta) {
         if (conta == null) {
 			return "Conta não informada"; 
@@ -43,8 +43,6 @@ public class MediatorContaCorrente {
             return null;
         }
     }
-
-    // Falta algumas verificações
 
     public String creditar(double valor, String numero) {
         if (valor < 0) {
@@ -82,6 +80,7 @@ public class MediatorContaCorrente {
         }
     }
 
+
     public ContaCorrente buscar(String numero) {
         if (stringNulaOuVazia(numero)) {
             return null;
@@ -108,6 +107,23 @@ public class MediatorContaCorrente {
         List<ContaCorrente> listaContas = Arrays.asList(contas);
         listaContas.sort(new ComparadorContaCorrenteSaldo());
         return listaContas;
+    }
+
+    public String excluirContasZeradas(){
+        int contasExcluidas = 0;
+        ContaCorrente[] contas = daoContaCorrente.buscarTodos();
+        for (ContaCorrente conta : contas){
+            if (conta.getSaldo() <= 0){
+                daoContaCorrente.excluir(conta.getNumero());
+                contasExcluidas++;
+            }
+        }
+
+        if (contasExcluidas >= 1){
+            return "Exclui " + contasExcluidas + " contas zeradas!";
+        } else{
+            return null;
+        }
     }
 
     private boolean stringNulaOuVazia(String valor) {

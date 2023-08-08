@@ -29,4 +29,8 @@ public class ContaPoupanca extends ContaCorrente {
     public String toString() {
         return super.toString() + ", Percentual de Bônus: " + percentualBonus;
     }
+
+    // public double obterAliquotaCpmf() {
+    //     return 0.0;
+    // }
 }
