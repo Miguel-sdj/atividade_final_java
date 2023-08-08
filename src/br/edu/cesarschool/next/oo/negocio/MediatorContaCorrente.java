@@ -66,12 +66,11 @@ public class MediatorContaCorrente {
         } else if (stringNulaOuVazia(numero)) {
             return "Número da conta corrente não informado";
         }
-
+        
         ContaCorrente conta = daoContaCorrente.buscar(numero);
-
         if (conta == null) {
             return "Conta corrente não encontrada";
-        } else if (conta.getSaldo() < valor) {
+        } else if (conta.getSaldo() < (valor - (valor * conta.obterAliquotaCpmf()))) {
             return "Saldo insuficiente";
         } else {
             conta.debitar(valor);

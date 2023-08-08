@@ -2,7 +2,7 @@ package br.edu.cesarschool.next.oo.entidade;
 
 import java.io.Serializable;
 
-public class ContaCorrente extends RegistroIdentificavel{
+public class ContaCorrente extends Conta{
     private static final long serialVersionUID = 1L;
     private String numero;
     private double saldo;
@@ -43,7 +43,7 @@ public class ContaCorrente extends RegistroIdentificavel{
     }
 
     public void debitar(double valor) {
-        saldo -= valor;
+        saldo = super.debitar(getSaldo(), valor);
     }
 
     @Override
@@ -56,7 +56,8 @@ public class ContaCorrente extends RegistroIdentificavel{
         return numero;
     }
 
-    // public double obterAliquotaCpmf() {
-    //     return 0.30;
-    // }
+    @Override
+    public double obterAliquotaCpmf() {
+        return 0.30;
+    }
 }
