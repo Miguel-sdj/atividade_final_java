@@ -48,7 +48,7 @@ public class ContaCorrente extends Conta{
 
     @Override
     public String toString() {
-        return "Número: " + numero + ", Saldo: " + saldo + ", Nome Correntista: " + nomeCorrentista + "dias que criei: " + obterTempoDeCriacao();
+        return "Número: " + numero + ", Saldo: " + saldo + ", Nome Correntista: " + nomeCorrentista + " Dias que criei: " + obterTempoDeCriacao();
     }
 
     @Override

@@ -25,7 +25,7 @@ public class DAOGenerico {
     }
 
     public RegistroIdentificavel buscar(String codigo) {
-        return (RegistroIdentificavel) cadastro.buscar(tipo, codigo);
+        return (RegistroIdentificavel) cadastro.buscar(codigo);
     }
 
     public boolean alterar(RegistroIdentificavel reg) {
@@ -43,7 +43,7 @@ public class DAOGenerico {
         if (regbuscado == null) {
             return false;
         } else {
-            cadastro.excluir(tipo, codigo);
+            cadastro.excluir(codigo);
             return true;
         }
     }
